@@ -1,110 +1,940 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LIV Hybrid Tech Pvt Ltd</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <div class="logo">LIV Hybrid Tech</div>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liv Hybrid Tech – Professional Courses</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <h1>Innovating The Future With Hybrid Technology</h1>
-        <p>
-          Empowering businesses through advanced technology solutions and
-          digital transformation.
-        </p>
-        <a href="#contact" class="btn">Get In Touch</a>
+  :root {
+    --navy: #0A0E27;
+    --slate: #1E2545;
+    --teal: #00D4C8;
+    --teal-dim: #00a89e;
+    --amber: #FFB547;
+    --white: #F0F4FF;
+    --muted: #8892b0;
+    --card-bg: #141836;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,14,39,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,212,200,0.15);
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--teal), var(--amber));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+  .logo span { font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal); color: var(--navy);
+    padding: 0.5rem 1.2rem; border-radius: 6px;
+    font-weight: 700; font-size: 0.85rem; text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--amber); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 4rem;
+    overflow: hidden;
+  }
+  canvas#circuit {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0.35;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 820px; }
+  .eyebrow {
+    display: inline-block; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 1.2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -1.5px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title .accent { color: var(--teal); }
+  .hero-title .amber { color: var(--amber); }
+  .hero-sub {
+    margin-top: 1.2rem; font-size: 1.1rem; color: var(--muted); max-width: 560px; margin-inline: auto;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-badges {
+    margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .badge {
+    background: rgba(0,212,200,0.1); border: 1px solid rgba(0,212,200,0.3);
+    color: var(--teal); padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .hero-cta-row {
+    margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .btn-primary {
+    background: var(--teal); color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 700; text-decoration: none; font-size: 0.95rem;
+    transition: transform 0.2s, background 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(240,244,255,0.25); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; text-decoration: none; font-size: 0.95rem;
+    transition: border-color 0.3s, background 0.3s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--teal); background: rgba(0,212,200,0.08); }
+
+  /* stats strip */
+  .stats-strip {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(0,212,200,0.1);
+    border-bottom: 1px solid rgba(0,212,200,0.1);
+    background: rgba(30,37,69,0.6);
+    animation: fadeUp 0.8s 0.75s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem; font-weight: 700; color: var(--teal);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ─── SECTION SHELL ─── */
+  section { padding: 5rem 2rem; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+    letter-spacing: -0.8px;
+  }
+  .section-title .amber { color: var(--amber); }
+  .section-desc { color: var(--muted); max-width: 520px; margin: 0.8rem auto 0; font-size: 1rem; }
+
+  /* ─── CATEGORY TABS ─── */
+  #courses { background: var(--navy); }
+  .tab-row {
+    display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    background: var(--slate); color: var(--muted);
+    border: 1.5px solid rgba(0,212,200,0.1);
+    padding: 0.55rem 1.4rem; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--teal); color: var(--navy);
+    border-color: var(--teal);
+  }
+  .tab-btn.active-amber { background: var(--amber); color: var(--navy); border-color: var(--amber); }
+
+  /* ─── COURSE GRID ─── */
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .course-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,212,200,0.1);
+    border-radius: 14px; padding: 1.6rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    opacity: 0; transform: translateY(30px);
+    position: relative; overflow: hidden;
+  }
+  .course-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(90deg, var(--teal), var(--amber));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .course-card:hover::before { transform: scaleX(1); }
+  .course-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,212,200,0.35);
+    box-shadow: 0 20px 50px rgba(0,212,200,0.1);
+  }
+  .course-card.visible { animation: cardIn 0.5s ease forwards; }
+  .card-icon {
+    width: 46px; height: 46px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1rem;
+    background: rgba(0,212,200,0.12);
+  }
+  .card-icon.amber-bg { background: rgba(255,181,71,0.12); }
+  .card-icon.purple-bg { background: rgba(138,99,255,0.12); }
+  .card-category {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--teal); margin-bottom: 0.4rem;
+  }
+  .card-category.amber { color: var(--amber); }
+  .card-category.purple { color: #8a63ff; }
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600; line-height: 1.3;
+    margin-bottom: 0.6rem;
+  }
+  .card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.55; margin-bottom: 1.2rem; }
+  .card-meta {
+    display: flex; gap: 0.7rem; flex-wrap: wrap;
+  }
+  .meta-pill {
+    background: rgba(240,244,255,0.06); border: 1px solid rgba(240,244,255,0.1);
+    color: var(--muted); font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 100px;
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+  .meta-pill.teal { border-color: rgba(0,212,200,0.3); color: var(--teal); background: rgba(0,212,200,0.06); }
+
+  /* hidden cards */
+  .course-card[data-cat]:not(.show) { display: none; }
+
+  /* ─── WHY SECTION ─── */
+  #why { background: var(--slate); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .why-card {
+    background: var(--card-bg); border-radius: 14px; padding: 1.8rem;
+    border: 1px solid rgba(0,212,200,0.1);
+    transition: transform 0.3s;
+  }
+  .why-card:hover { transform: translateY(-4px); }
+  .why-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .why-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .why-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.55; }
+
+  /* ─── PROCESS ─── */
+  #process { background: var(--navy); }
+  .process-steps {
+    display: flex; gap: 0; max-width: 900px; margin: 0 auto;
+    position: relative; flex-wrap: wrap;
+  }
+  .process-steps::before {
+    content: ''; position: absolute; top: 28px; left: 5%; right: 5%; height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--amber));
+    z-index: 0;
+  }
+  .step {
+    flex: 1; min-width: 160px; text-align: center; padding: 0 1rem;
+    position: relative; z-index: 1;
+  }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--navy); border: 2px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--teal);
+    margin: 0 auto 1rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  .step:hover .step-num { background: var(--teal); color: var(--navy); }
+  .step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .step-desc { font-size: 0.8rem; color: var(--muted); }
+
+  /* ─── CONTACT / FOOTER ─── */
+  #contact {
+    background: var(--slate);
+    padding: 5rem 2rem;
+  }
+  .contact-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: start;
+  }
+  .contact-info h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .contact-info p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .info-row { display: flex; gap: 0.8rem; align-items: flex-start; margin-bottom: 1rem; }
+  .info-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .info-text { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .info-text strong { color: var(--white); display: block; }
+
+  .contact-form { background: var(--card-bg); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,200,0.1); }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(10,14,39,0.7);
+    border: 1px solid rgba(0,212,200,0.2); border-radius: 8px;
+    padding: 0.75rem 1rem; color: var(--white); font-size: 0.9rem; font-family: inherit;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--teal);
+  }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    width: 100%; background: var(--teal); color: var(--navy);
+    border: none; padding: 0.9rem; border-radius: 8px;
+    font-weight: 700; font-size: 0.95rem; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .form-submit:hover { background: var(--amber); transform: translateY(-2px); }
+
+  /* ─── FOOTER BAR ─── */
+  footer {
+    background: var(--navy); border-top: 1px solid rgba(0,212,200,0.1);
+    padding: 1.5rem 2rem; text-align: center;
+    color: var(--muted); font-size: 0.82rem;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cardIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(0,212,200,0.4); }
+    70%  { box-shadow: 0 0 0 16px rgba(0,212,200,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,212,200,0); }
+  }
+  .pulse { animation: pulse-ring 2s infinite; }
+
+  @media (max-width: 768px) {
+    .contact-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .process-steps::before { display: none; }
+    .step { min-width: 50%; margin-bottom: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Liv Hybrid <span>Tech</span></div>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#courses" class="nav-cta">Explore Courses</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="circuit"></canvas>
+  <div class="hero-content">
+    <span class="eyebrow">⚡ Anaipudhur, Tiruppur</span>
+    <h1 class="hero-title">
+      Build Your Future<br>
+      with <span class="accent">Hybrid</span> <span class="amber">Learning</span>
+    </h1>
+    <p class="hero-sub">Industry-focused courses for Engineering, Arts &amp; Diploma students. Hands-on training. Real-world skills. 3–6 month programs designed for careers that matter.</p>
+    <div class="hero-badges">
+      <span class="badge">🎓 Engineering Tracks</span>
+      <span class="badge">🎨 Arts &amp; Design</span>
+      <span class="badge">🛠 Diploma Programs</span>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#courses" class="btn-primary">Browse All Courses</a>
+      <a href="#contact" class="btn-outline">Talk to an Advisor</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-num" id="cnt1">0</div>
+    <div class="stat-label">Courses Offered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" id="cnt2">0</div>
+    <div class="stat-label">Students Trained</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" id="cnt3">0</div>
+    <div class="stat-label">Industry Partners</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" id="cnt4">0</div>
+    <div class="stat-label">Placement Rate %</div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-header">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2 class="section-title">Explore Our <span class="amber">Courses</span></h2>
+    <p class="section-desc">Professionally structured programs from 3 to 6 months, blending theory with live project experience.</p>
+  </div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-filter="all">All Courses</button>
+    <button class="tab-btn" data-filter="engineering">⚙️ Engineering</button>
+    <button class="tab-btn" data-filter="arts">🎨 Arts &amp; Design</button>
+    <button class="tab-btn" data-filter="diploma">🛠 Diploma</button>
+  </div>
+
+  <div class="course-grid" id="courseGrid">
+
+    <!-- ENGINEERING -->
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">🤖</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Artificial Intelligence &amp; Machine Learning</div>
+      <div class="card-desc">Master supervised learning, neural networks, NLP, and model deployment with Python and TensorFlow on real datasets.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 6 Months</span>
+        <span class="meta-pill">📌 Project-Based</span>
       </div>
-    </section>
+    </div>
 
-    <section id="about">
-      <div class="container">
-        <h2>About Us</h2>
-        <p>
-          LIV Hybrid Tech Pvt Ltd is a technology-driven company focused on
-          delivering innovative, reliable, and scalable solutions for
-          businesses. We combine modern technologies with industry expertise to
-          help organizations grow efficiently.
-        </p>
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">🌐</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Full-Stack Web Development</div>
+      <div class="card-desc">HTML, CSS, JavaScript, React, Node.js, MongoDB — build and deploy production-ready web apps from scratch.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 5 Months</span>
+        <span class="meta-pill">💻 Live Projects</span>
       </div>
-    </section>
+    </div>
 
-    <section id="services">
-      <div class="container">
-        <h2>Our Services</h2>
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">☁️</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Cloud Computing &amp; DevOps</div>
+      <div class="card-desc">AWS / Azure fundamentals, CI/CD pipelines, Docker, Kubernetes — industry-level infrastructure skills.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 4 Months</span>
+        <span class="meta-pill">🏅 Cert Ready</span>
+      </div>
+    </div>
 
-        <div class="cards">
-          <div class="card">
-            <h3>Software Development</h3>
-            <p>
-              Custom web and mobile applications tailored to your business
-              needs.
-            </p>
-          </div>
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">🔐</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Cybersecurity &amp; Ethical Hacking</div>
+      <div class="card-desc">Network security, penetration testing, VAPT, and digital forensics — prepare for security roles in real organizations.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 6 Months</span>
+        <span class="meta-pill">🔒 Hands-on Labs</span>
+      </div>
+    </div>
 
-          <div class="card">
-            <h3>Cloud Solutions</h3>
-            <p>Scalable cloud infrastructure and deployment services.</p>
-          </div>
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">📊</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Data Science &amp; Analytics</div>
+      <div class="card-desc">Data wrangling, visualization, statistical modeling, and business intelligence using Python, SQL, and Power BI.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 5 Months</span>
+        <span class="meta-pill">📈 Industry Cases</span>
+      </div>
+    </div>
 
-          <div class="card">
-            <h3>IT Consulting</h3>
-            <p>Strategic guidance to optimize technology investments.</p>
-          </div>
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">📱</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Mobile App Development</div>
+      <div class="card-desc">Build cross-platform iOS and Android apps using Flutter and Dart, from UI design to Play Store deployment.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 4 Months</span>
+        <span class="meta-pill">📲 App Publish</span>
+      </div>
+    </div>
 
-          <div class="card">
-            <h3>Digital Transformation</h3>
-            <p>Helping organizations modernize operations and processes.</p>
-          </div>
+    <div class="course-card show" data-cat="engineering">
+      <div class="card-icon">🤖</div>
+      <div class="card-category">Engineering</div>
+      <div class="card-title">Embedded Systems &amp; IoT</div>
+      <div class="card-desc">Arduino, Raspberry Pi, sensor integration, wireless protocols — build smart devices and connected systems.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 3 Months</span>
+        <span class="meta-pill">🔌 Hardware Kit</span>
+      </div>
+    </div>
+
+    <!-- ARTS -->
+    <div class="course-card show" data-cat="arts">
+      <div class="card-icon amber-bg">🎨</div>
+      <div class="card-category amber">Arts &amp; Design</div>
+      <div class="card-title">UI / UX Design</div>
+      <div class="card-desc">User research, wireframing, prototyping in Figma, and usability testing — design digital products people love.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 4 Months</span>
+        <span class="meta-pill">🖌 Figma Projects</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="arts">
+      <div class="card-icon amber-bg">🎬</div>
+      <div class="card-category amber">Arts &amp; Design</div>
+      <div class="card-title">Motion Graphics &amp; Video Editing</div>
+      <div class="card-desc">Adobe After Effects, Premiere Pro, and DaVinci Resolve — create stunning visuals for brand, social, and cinema.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 3 Months</span>
+        <span class="meta-pill">🎞 Portfolio</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="arts">
+      <div class="card-icon amber-bg">📸</div>
+      <div class="card-category amber">Arts &amp; Design</div>
+      <div class="card-title">Digital Photography &amp; Retouching</div>
+      <div class="card-desc">Composition, lighting theory, Adobe Lightroom and Photoshop — from shoots to stunning final edits.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 3 Months</span>
+        <span class="meta-pill">📷 Studio Access</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="arts">
+      <div class="card-icon amber-bg">🖥</div>
+      <div class="card-category amber">Arts &amp; Design</div>
+      <div class="card-title">Graphic Design &amp; Branding</div>
+      <div class="card-desc">Typography, color theory, logo design, brand identity systems using Illustrator and InDesign for real clients.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 4 Months</span>
+        <span class="meta-pill">🏆 Client Briefs</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="arts">
+      <div class="card-icon amber-bg">📲</div>
+      <div class="card-category amber">Arts &amp; Design</div>
+      <div class="card-title">Social Media Marketing &amp; Content</div>
+      <div class="card-desc">Strategy, copywriting, analytics, Meta Ads, SEO fundamentals — grow brands organically and through paid campaigns.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 3 Months</span>
+        <span class="meta-pill">📢 Live Campaigns</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="arts">
+      <div class="card-icon amber-bg">🎭</div>
+      <div class="card-category amber">Arts &amp; Design</div>
+      <div class="card-title">3D Modeling &amp; Animation</div>
+      <div class="card-desc">Blender and Maya fundamentals — model, rig, animate, and render 3D scenes for games, product viz, and film.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 6 Months</span>
+        <span class="meta-pill">🕹 Game-Ready</span>
+      </div>
+    </div>
+
+    <!-- DIPLOMA -->
+    <div class="course-card show" data-cat="diploma">
+      <div class="card-icon purple-bg">🛠</div>
+      <div class="card-category purple">Diploma</div>
+      <div class="card-title">Industrial Automation &amp; PLC</div>
+      <div class="card-desc">Programmable Logic Controllers, SCADA systems, relay logic, and HMI configuration for manufacturing careers.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 5 Months</span>
+        <span class="meta-pill">🏭 Factory Visit</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="diploma">
+      <div class="card-icon purple-bg">⚡</div>
+      <div class="card-category purple">Diploma</div>
+      <div class="card-title">Electrical Wiring &amp; Solar Systems</div>
+      <div class="card-desc">Domestic and industrial wiring, panel boards, solar PV installation, and grid connections — hands-on practical training.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 4 Months</span>
+        <span class="meta-pill">☀️ Field Training</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="diploma">
+      <div class="card-icon purple-bg">🔧</div>
+      <div class="card-category purple">Diploma</div>
+      <div class="card-title">CAD / CAM &amp; Mechanical Design</div>
+      <div class="card-desc">AutoCAD, SolidWorks, CNC programming — design, simulate, and manufacture precision components for industry.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 4 Months</span>
+        <span class="meta-pill">🖨 CNC Lab</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="diploma">
+      <div class="card-icon purple-bg">💼</div>
+      <div class="card-category purple">Diploma</div>
+      <div class="card-title">Business Accounting &amp; Tally Prime</div>
+      <div class="card-desc">GST, TDS, payroll, inventory, and financial statements using Tally Prime — job-ready for accounting and finance roles.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 3 Months</span>
+        <span class="meta-pill">📑 GST Certified</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="diploma">
+      <div class="card-icon purple-bg">🏗</div>
+      <div class="card-category purple">Diploma</div>
+      <div class="card-title">Civil Drafting &amp; Estimation</div>
+      <div class="card-desc">AutoCAD 2D/3D, quantity takeoffs, BOQ preparation, and structural drawing reading for construction professionals.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 5 Months</span>
+        <span class="meta-pill">🏛 Site Visits</span>
+      </div>
+    </div>
+
+    <div class="course-card show" data-cat="diploma">
+      <div class="card-icon purple-bg">🖥</div>
+      <div class="card-category purple">Diploma</div>
+      <div class="card-title">Computer Hardware &amp; Networking</div>
+      <div class="card-desc">PC assembly, OS installation, LAN/WAN setup, router configuration, and troubleshooting — CCNA preparatory track.</div>
+      <div class="card-meta">
+        <span class="meta-pill teal">⏱ 6 Months</span>
+        <span class="meta-pill">🌐 Lab Training</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-header">
+    <p class="section-eyebrow">Our Advantage</p>
+    <h2 class="section-title">Why Choose <span class="amber">Liv Hybrid Tech?</span></h2>
+    <p class="section-desc">We combine industry mentorship, hybrid delivery, and career support that most training centres skip.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏭</div>
+      <div class="why-title">Industry Mentors</div>
+      <div class="why-desc">Every course is guided by working professionals from Tiruppur's textile, IT, and manufacturing sectors — real insight, not textbooks alone.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔀</div>
+      <div class="why-title">True Hybrid Model</div>
+      <div class="why-desc">Attend in-person at our Anaipudhur centre or join live online sessions — your learning, your schedule.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🛠</div>
+      <div class="why-title">Live Project Labs</div>
+      <div class="why-desc">Dedicated lab sessions every week where you build real deliverables — apps, designs, systems — for your portfolio.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📋</div>
+      <div class="why-title">Placement Support</div>
+      <div class="why-desc">Resume reviews, mock interviews, and direct connections to hiring partners across South India upon course completion.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏅</div>
+      <div class="why-title">Verified Certificates</div>
+      <div class="why-desc">Earn Liv Hybrid Tech certificates recognised by partner organisations, with QR-verifiable credentials for every graduate.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">Community &amp; Alumni</div>
+      <div class="why-desc">Join a growing network of 1,500+ alumni. Monthly meetups, peer study groups, and lifetime access to updated course materials.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header">
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title">Your Journey with <span class="amber">Us</span></h2>
+    <p class="section-desc">From enrollment to employment in four clear stages.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num pulse">01</div>
+      <div class="step-title">Apply &amp; Enroll</div>
+      <div class="step-desc">Fill the short form, speak with an advisor, choose your track.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Learn &amp; Build</div>
+      <div class="step-desc">Weekly live classes, lab sessions, and mentor check-ins.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Capstone Project</div>
+      <div class="step-desc">Complete a real-world project reviewed by an industry panel.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Certify &amp; Launch</div>
+      <div class="step-desc">Graduate, receive your certificate, and start your career journey.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Let's Get You <span style="color:var(--teal)">Started</span></h2>
+      <p>Have questions about a course, batch schedule, or anything else? Reach out — we respond within one working day.</p>
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <div class="info-text">
+          <strong>Our Centre</strong>
+          Liv Hybrid Tech, Anaipudhur,<br>Tiruppur – 641652,<br>Tamil Nadu, India.
         </div>
       </div>
-    </section>
-
-    <section class="why-us">
-      <div class="container">
-        <h2>Why Choose LIV Hybrid Tech?</h2>
-
-        <div class="features">
-          <div>✔ Innovative Solutions</div>
-          <div>✔ Expert Team</div>
-          <div>✔ Customer-Centric Approach</div>
-          <div>✔ Scalable Technology</div>
-          <div>✔ 24/7 Support</div>
-          <div>✔ Quality Assurance</div>
+      <div class="info-row">
+        <span class="info-icon">📧</span>
+        <div class="info-text">
+          <strong>Email</strong>
+          info@livhybridtech.in
         </div>
       </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <h2>Contact Us</h2>
-
-        <form>
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Email Address" required />
-          <textarea placeholder="Your Message"></textarea>
-          <button type="submit">Send Message</button>
-        </form>
+      <div class="info-row">
+        <span class="info-icon">📞</span>
+        <div class="info-text">
+          <strong>Phone</strong>
+          +91 98765 43210
+        </div>
       </div>
-    </section>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <div class="info-text">
+          <strong>Hours</strong>
+          Mon – Sat &nbsp;|&nbsp; 9 AM – 6 PM
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label>Course Interested In</label>
+        <select>
+          <option value="">Select a course…</option>
+          <optgroup label="Engineering">
+            <option>AI &amp; Machine Learning</option>
+            <option>Full-Stack Web Development</option>
+            <option>Cloud Computing &amp; DevOps</option>
+            <option>Cybersecurity &amp; Ethical Hacking</option>
+            <option>Data Science &amp; Analytics</option>
+            <option>Mobile App Development</option>
+            <option>Embedded Systems &amp; IoT</option>
+          </optgroup>
+          <optgroup label="Arts &amp; Design">
+            <option>UI / UX Design</option>
+            <option>Motion Graphics &amp; Video Editing</option>
+            <option>Digital Photography &amp; Retouching</option>
+            <option>Graphic Design &amp; Branding</option>
+            <option>Social Media Marketing</option>
+            <option>3D Modeling &amp; Animation</option>
+          </optgroup>
+          <optgroup label="Diploma">
+            <option>Industrial Automation &amp; PLC</option>
+            <option>Electrical Wiring &amp; Solar Systems</option>
+            <option>CAD / CAM &amp; Mechanical Design</option>
+            <option>Business Accounting &amp; Tally Prime</option>
+            <option>Civil Drafting &amp; Estimation</option>
+            <option>Computer Hardware &amp; Networking</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea placeholder="Any questions or preferred batch timing…"></textarea>
+      </div>
+      <button class="form-submit">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
 
-    <footer>
-      <p>© 2026 LIV Hybrid Tech Pvt Ltd. All Rights Reserved.</p>
-    </footer>
+<footer>
+  <div style="margin-bottom:0.5rem;">
+    <span style="color:var(--teal); font-family:'Space Grotesk',sans-serif; font-weight:700;">Liv Hybrid Tech</span>
+    &nbsp;·&nbsp; Anaipudhur, Tiruppur 641652 &nbsp;·&nbsp; Tamil Nadu
+  </div>
+  © 2025 Liv Hybrid Tech. Empowering careers through hybrid education.
+</footer>
 
-    <script src="script.js"></script>
-  </body>
+<script>
+/* ── CIRCUIT CANVAS ANIMATION ── */
+const canvas = document.getElementById('circuit');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [], lines = [];
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  buildGraph();
+}
+
+function buildGraph() {
+  nodes = [];
+  for (let i = 0; i < 60; i++) {
+    nodes.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2 + 1,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawFrame() {
+  ctx.clearRect(0, 0, W, H);
+  const t = Date.now() * 0.001;
+
+  nodes.forEach(n => {
+    n.x += n.vx; n.y += n.vy;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+    n.pulse += 0.02;
+
+    // draw node
+    const glow = Math.sin(n.pulse) * 0.5 + 0.5;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r + glow, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,212,200,${0.4 + glow * 0.4})`;
+    ctx.fill();
+  });
+
+  // draw lines
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 130) {
+        const alpha = (1 - dist / 130) * 0.3;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = `rgba(0,212,200,${alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawFrame);
+}
+
+resize();
+window.addEventListener('resize', resize);
+drawFrame();
+
+/* ── TAB FILTER ── */
+const tabs = document.querySelectorAll('.tab-btn');
+const cards = document.querySelectorAll('.course-card');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    cards.forEach((card, i) => {
+      const cat = card.dataset.cat;
+      const show = filter === 'all' || cat === filter;
+      card.style.display = show ? 'block' : 'none';
+      if (show) {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, i * 40);
+      }
+    });
+  });
+});
+
+/* ── SCROLL REVEAL FOR CARDS ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+cards.forEach(c => observer.observe(c));
+
+/* ── COUNTER ANIMATION ── */
+function animateCount(el, target, suffix = '') {
+  let start = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target + suffix; clearInterval(timer); return; }
+    el.textContent = Math.floor(start) + suffix;
+  }, 20);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    animateCount(document.getElementById('cnt1'), 20);
+    animateCount(document.getElementById('cnt2'), 1500, '+');
+    animateCount(document.getElementById('cnt3'), 35, '+');
+    animateCount(document.getElementById('cnt4'), 92);
+    statsObserver.disconnect();
+  }
+}, { threshold: 0.5 });
+statsObserver.observe(document.querySelector('.stats-strip'));
+
+/* ── FORM SUBMIT HANDLER ── */
+document.querySelector('.form-submit').addEventListener('click', function() {
+  this.textContent = '✅ Enquiry Sent!';
+  this.style.background = '#22c55e';
+  setTimeout(() => {
+    this.textContent = 'Send Enquiry →';
+    this.style.background = '';
+  }, 3000);
+});
+</script>
+</body>
 </html>
